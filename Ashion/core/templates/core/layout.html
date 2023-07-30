@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
-
+    {% block styles %}{% endblock %}
 </head>
 
 <body>
@@ -50,7 +50,7 @@
         </div>
         <div id="mobile-menu-wrap"></div>
         <div class="offcanvas__auth">
-            <a href="#">Login</a>
+            <a href="{% url 'login' %}">Login</a>
             <a href="#">Register</a>
         </div>
     </div>
@@ -88,8 +88,8 @@
                 <div class="col-lg-3">
                     <div class="header__right">
                         <div class="header__right__auth">
-                            <a href="#">Login</a>
-                            <a href="#">Register</a>
+                            <a href="{% url 'login' %}">Login</a>
+                            <a href="{% url 'register' %}">Register</a>
                         </div>
                         <ul class="header__right__widget">
                             <li><span ><i class="bi bi-search"></i></span></li>

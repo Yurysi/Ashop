@@ -21,6 +21,7 @@ from django.conf.urls.static import static
 
 from core.views import index, contact, blog
 from shop.views import shop
+from user.views import login, register
 
 
 urlpatterns = [
@@ -29,4 +30,7 @@ urlpatterns = [
     path('contact/', contact, name='contact'),
     path('blog/', blog, name='blog'),
     path('shop/', shop, name='shop'),
+    path('login/', login, name='login'),
+    path('registration/', register, name='register'),
+
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
