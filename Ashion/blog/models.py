@@ -1,5 +1,5 @@
 from django.db import models
-from datetime import date
+from django.utils import timezone
 
 class Blog(models.Model):
     name = models.CharField(max_length=255)
@@ -29,11 +29,9 @@ class Entry(models.Model):
     ]
 
 
-    blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
-    headline = models.CharField(max_length=255)
-    body_text = models.TextField()
-    pub_date = models.DateField()
-    mod_date = models.DateField(default=date.today)
+    title = models.CharField(max_length=255)
+    content = models.TextField()
+    published_at = models.DateTimeField(default=timezone.now())
     authors = models.ManyToManyField(Author)
     categories = models.CharField(max_length=12, choices=category_choises, default= fashion_week)
     number_of_comments = models.IntegerField(default=0)
@@ -41,4 +39,7 @@ class Entry(models.Model):
     rating = models.IntegerField(default=5)
 
     def __str__(self):
-        return self.headline
+        return self.title
+
+    class Meta:
+        ordering = ['-published_at']
