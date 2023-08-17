@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Blog, Author, Entry
 from django.utils import timezone
-from .forms import EntryForm
+from .forms import EntryForm, HotelForm
 
 
 # def blog(request):
@@ -61,3 +61,17 @@ def delete_post(request, id):
         post.delete()
         messages.success(request, 'The post has been deleted successfully.')
         return redirect('blog')
+
+
+def hotel_image_view(request):
+    if request.method == 'POST':
+        form = HotelForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'successfully uploaded.')
+            return redirect('blog')
+    else:
+        form = HotelForm()
+    return render(request, 'blog/hotel_image_form.html', {'form': form})
+
