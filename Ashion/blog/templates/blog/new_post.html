@@ -1,0 +1,22 @@
+{% extends 'core/layout.html' %}
+{% load static %}
+
+{% block breadcrumb %}
+	<a href="{% url 'blog' %}">Blog</a>
+	<i class="bi bi-caret-right-fill"></i>
+	New post
+
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+{% endblock %}
+
+{% block main %}
+<h2>New Post</h2>
+<form method="post" novalidate>
+	{% csrf_token %}
+	{{ form.as_p }}
+	<input type="submit" value="Save" />
+</form>
+{% endblock %}
